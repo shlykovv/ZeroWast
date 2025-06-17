@@ -33,6 +33,7 @@ INSTALLED_APPS = [
     "core.apps.CoreConfig",
     "exchange.apps.ExchangeConfig",
     "map.apps.MapConfig",
+    "rest_framework",
 ]
 
 MIDDLEWARE = [

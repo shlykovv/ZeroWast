@@ -41,21 +41,23 @@ class GreenPoint(models.Model):
         upload_to=greenpoint_photo_path,
         blank=True,
         null=True)
-    created_by = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, null=True)
+    created_by = models.ForeignKey(
+        settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, null=True)
 
     created_at = models.DateTimeField(auto_now_add=True)
-    
+
     def save(self, *args, **kwargs):
         if self.photo:
             img = Image.open(self.photo)
             if img.mode != 'RGB':
                 img = img.convert('RGB')
-            
+
             output = BytesIO()
             img.thumbnail((1024, 1024))
-            img.save(output, format='JPEG', quality=70) # Качесто image 70%
+            # Качесто image 70%
+            img.save(output, format='JPEG', quality=70)
             output.seek(0)
-            
+
             self.photo = ContentFile(output.read(), self.photo.name)
         super().save(*args, **kwargs)
 

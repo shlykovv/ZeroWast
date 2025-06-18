@@ -32,6 +32,7 @@ router.register(r'exchange-items', ExchangeItemViewSet)
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include(router.urls)),
+    path('api/greenpoints/', include('greenpoints.urls')),
     path(
         'api/token/',
         TokenObtainPairView.as_view(),

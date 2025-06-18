@@ -30,11 +30,12 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "rest_framework",
     "accounts.apps.AccountsConfig",
     "core.apps.CoreConfig",
     "exchange.apps.ExchangeConfig",
     "map.apps.MapConfig",
-    "rest_framework",
+    "greenpoints.apps.GreenpointsConfig"
 ]
 
 MIDDLEWARE = [

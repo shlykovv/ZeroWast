@@ -7,3 +7,4 @@ class ExchangeItemSerializer(serializers.ModelSerializer):
     class Meta:
         model = ExchangeItem
         fields = '__all__'
+        read_only_fields = ('created_at',)

@@ -1,8 +1,11 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
+from django.contrib.auth.decorators import login_required
+from django.core.paginator import Paginator
 from rest_framework import viewsets
 from rest_framework.permissions import IsAuthenticated
 
 from exchange.models import ExchangeItem, Category
+from exchange.forms import ExchangeItemForm
 from exchange.serializers import ExchangeItemSerializer
 
 
@@ -33,9 +36,14 @@ def exchange_list(request):
 
     categories = Category.objects.all()
 
+    paginator = Paginator(items, 6)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+
     context = {
         'items': items,
-        'categories': categories
+        'categories': categories,
+        'page_obj': page_obj
     }
     return render(request, 'exchange_item/exchange_list.html', context)
 
@@ -47,3 +55,22 @@ def item_detail(request, pk):
         'item': item
     }
     return render(request, 'exchange_item/item_detail.html', context)
+
+
+def item_create(request):
+    if request.method == 'POST':
+        form = ExchangeItemForm(request.POST, request.FILES)
+        if form.is_valid():
+            item = form.save(commit=False)
+            item.user = request.user
+            item.save()
+            return redirect('exchange:item_detail', pk=item.pk)
+    else:
+        form = ExchangeItemForm()
+
+    context = {
+        'title': 'Добавление товара',
+        'form': form
+    }
+
+    return render(request, 'exchange_item/item_create.html', context)

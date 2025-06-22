@@ -32,12 +32,13 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "rest_framework",
     "tailwind",
-    # "theme",
+
     "accounts.apps.AccountsConfig",
     "core.apps.CoreConfig",
     "exchange.apps.ExchangeConfig",
     "map.apps.MapConfig",
-    "greenpoints.apps.GreenpointsConfig"
+    "greenpoints.apps.GreenpointsConfig",
+    "main.apps.MainConfig"
 ]
 
 MIDDLEWARE = [

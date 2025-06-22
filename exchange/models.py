@@ -11,26 +11,30 @@ class ExchangeItem(models.Model):
         RESERVED = 'reserved', 'Зарезервировано'
 
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    title = models.CharField(max_length=255)
-    description = models.TextField()
+    title = models.CharField(max_length=255, verbose_name='Название товара')
+    description = models.TextField(verbose_name='Описание товара')
     category = models.ForeignKey(
         'Category',
         on_delete=models.SET_NULL,
         null=True,
-        related_name='items')
+        related_name='items',
+        verbose_name='Категория',)
     status = models.CharField(
         max_length=20,
         choices=StatusChoices.choices,
-        default=StatusChoices.AVAILABLE)
+        default=StatusChoices.AVAILABLE,
+        verbose_name='Статус')
     image = models.ImageField(
         upload_to="exchange_items/",
-        blank=True, null=True)
-    location = models.CharField(max_length=255)
+        blank=True, null=True,
+        verbose_name='Изображение товара')
+    location = models.CharField(max_length=255, verbose_name='Местоположение')
+
     created_at = models.DateTimeField(auto_now_add=True)
     is_active = models.BooleanField(default=True)
 
     def __str__(self):
-        return f"{self.title} ({self.get_category_display()})"
+        return f"{self.title} ({self.category.name})"
 
 
 class Category(models.Model):

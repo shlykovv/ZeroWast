@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+
+{% block title %}Главная — Город без мусора{% endblock %}
+
+{% block content %}
+
+<!-- Hero -->
+<section class="text-center py-12 px-4 bg-gradient-to-b from-green-100 to-white dark:from-green-900 dark:to-gray-900">
+    <h1 class="text-4xl font-extrabold text-green-700 dark:text-green-300 mb-4">Город без мусора</h1>
+    <p class="text-lg text-gray-700 dark:text-gray-300 mb-6">
+        Обменивайся, перерабатывай, вдохновляй других. Делай город чище.
+    </p>
+    <a href="#" class="bg-green-600 hover:bg-green-700 text-white py-3 px-6 rounded-xl text-lg shadow">
+        Начать прямо сейчас
+    </a>
+</section>
+
+<!-- Зеленые точки -->
+<section class="py-12">
+    <h2 class="text-2xl font-semibold mb-4">♻️ Зелёные точки рядом</h2>
+    <div class="w-full h-64 bg-gray-100 dark:bg-gray-800 rounded shadow-inner flex items-center justify-center text-gray-500 dark:text-gray-400">
+        Здесь будет карта с точками переработки
+    </div>
+</section>
+
+<!-- Обмен -->
+<section class="px-6 py-10 bg-gray-50 dark:bg-gray-800">
+  <h2 class="text-2xl font-semibold mb-6">🔁 Обмен вещами</h2>
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      {% for item in items %}
+          <div class="bg-white dark:bg-gray-700 p-4 rounded-xl shadow hover:shadow-lg transition">
+              {% if item.image %}
+                  <img src="{{ item.image.url }}" alt="{{ item.title }}" class="w-full h-40 object-cover rounded mb-3">
+              {% else %}
+                  <div class="w-full h-40 bg-gray-200 dark:bg-gray-600 rounded mb-3 flex items-center justify-center text-gray-400">
+                    Нет изображения
+                  </div>
+              {% endif %}
+              <h3 class="font-bold text-lg text-green-700 dark:text-green-300">{{ item.title }}</h3>
+              <p class="text-sm text-gray-600 dark:text-gray-300">{{ item.category.name }}</p>
+              <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">{{ item.location }}</p>
+          </div>
+      {% endfor %}
+  </div>
+</section>
+
+<!-- Челленджи -->
+<section class="py-10">
+    <h2 class="text-2xl font-semibold mb-4">🏆 Экочелленджи</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div class="bg-green-100 dark:bg-green-900 p-4 rounded-xl">
+            <h3 class="text-lg font-bold">Неделя без пластика</h3>
+            <p class="text-sm text-gray-700 dark:text-gray-300">+20 баллов</p>
+        </div>
+        <div class="bg-green-100 dark:bg-green-900 p-4 rounded-xl">
+            <h3 class="text-lg font-bold">10 вещей на обмен</h3>
+            <p class="text-sm text-gray-700 dark:text-gray-300">+15 баллов</p>
+        </div>
+    </div>
+</section>
+
+<script>
+    const map = L.map('map').setView([55.751244, 37.618423], 12); // Москва по умолчанию
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; OpenStreetMap contributors'
+    }).addTo(map);
+
+    const greenpoints = {{ greenpoints_json|safe }};  // Список точек в формате [{name, lat, lng, description}, ...]
+
+    greenpoints.forEach(point => {
+        L.marker([point.lat, point.lng])
+            .addTo(map)
+            .bindPopup(`<b>${point.name}</b><br>${point.description}`);
+    });
+</script>
+{% endblock %}

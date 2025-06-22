@@ -29,6 +29,7 @@ class ExchangeItem(models.Model):
         blank=True, null=True,
         verbose_name='Изображение товара')
     location = models.CharField(max_length=255, verbose_name='Местоположение')
+
     created_at = models.DateTimeField(auto_now_add=True)
     is_active = models.BooleanField(default=True)
 

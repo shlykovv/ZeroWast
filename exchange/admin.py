@@ -16,6 +16,7 @@ class ExchangeItemAdmin(admin.ModelAdmin):
         'title', 'category', 'status',
         'location', 'created_at')
 
+
     def preview(self, obj):
         if obj.image:
             return mark_safe(f'<img src="{obj.image.url}" wirth="80"/>')

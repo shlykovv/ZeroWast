@@ -26,19 +26,21 @@
     </form>
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 py-6">
         {% for item in items %}
-        <div class="bg-white rounded-2xl shadow p-4">
-        {% if item.image %}
-        <img src="{{ item.image.url }}" alt="{{ item.title }}" class="rounded-xl w-full h-48 object-cover mb-2">
-        {% else %}
-        <div class="w-full h-48 bg-gray-200 rounded-xl flex items-center justify-center mb-2 text-gray-500">
-            Нет фото
-        </div>
-        {% endif %}
-        <h2 class="text-lg font-bold">{{ item.title }}</h2>
-        <p class="text-sm text-gray-600">{{ item.get_category_display }}</p>
-        <p class="text-sm mt-1">{{ item.description|truncatewords:15 }}</p>
-        <p class="text-xs text-gray-500 mt-2">{{ item.location }}</p>
-        </div>
+        <a href="{% url 'exchange:item_detail' item.id %}">
+            <div class="bg-white rounded-2xl shadow p-4">
+            {% if item.image %}
+                <img src="{{ item.image.url }}" alt="{{ item.title }}" class="rounded-xl w-full h-48 object-cover mb-2">
+                {% else %}
+                <div class="w-full h-48 bg-gray-200 rounded-xl flex items-center justify-center mb-2 text-gray-500">
+                    Нет фото
+                </div>
+                {% endif %}
+                <h2 class="text-lg font-bold">{{ item.title }}</h2>
+                <p class="text-sm text-gray-600">{{ item.get_category_display }}</p>
+                <p class="text-sm mt-1">{{ item.description|truncatewords:15 }}</p>
+                <p class="text-xs text-gray-500 mt-2">{{ item.location }}</p>
+            </div>
+        </a>
         {% endfor %}
     </div>
 </div>

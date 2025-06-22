@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from rest_framework import viewsets
 from rest_framework.permissions import IsAuthenticated
 
@@ -38,3 +38,12 @@ def exchange_list(request):
         'categories': categories
     }
     return render(request, 'exchange_item/exchange_list.html', context)
+
+
+def item_detail(request, pk):
+    item = get_object_or_404(ExchangeItem, pk=pk)
+    context = {
+        'title': f'Товар - {item.title}',
+        'item': item
+    }
+    return render(request, 'exchange_item/item_detail.html', context)

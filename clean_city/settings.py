@@ -31,6 +31,8 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "rest_framework",
+    "tailwind",
+    # "theme",
     "accounts.apps.AccountsConfig",
     "core.apps.CoreConfig",
     "exchange.apps.ExchangeConfig",

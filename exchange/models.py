@@ -30,7 +30,7 @@ class ExchangeItem(models.Model):
     is_active = models.BooleanField(default=True)
 
     def __str__(self):
-        return f"{self.title} ({self.get_category_display()})"
+        return f"{self.title} ({self.category.name})"
 
 
 class Category(models.Model):

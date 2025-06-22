@@ -12,7 +12,9 @@ class CategoryAdmin(admin.ModelAdmin):
 
 @admin.register(ExchangeItem)
 class ExchangeItemAdmin(admin.ModelAdmin):
-    list_display = ('title', 'category', 'preview')
+    list_display = (
+        'title', 'category', 'status',
+        'location', 'created_at')
 
     def preview(self, obj):
         if obj.image:

@@ -8,9 +8,27 @@
 </head>
 <body class="bg-gray-100 text-gray-900">
     {% include "_inc/nav.html" %}
+    <button id="theme-toggle" class="ml-auto text-sm px-4 py-2 rounded border border-gray-300 dark:border-gray-600">
+        🌞 / 🌙
+    </button>
     <div class="max-w-6xl mx-auto p-4">
         <h1 class="text-3xl font-bold mb-4">Город без мусора</h1>
         {% block content %}{% endblock content %}
     </div>
+
+
+    <script>
+        const toggleBtn = document.getElementById("theme-toggle");
+        const htmlEl = document.documentElement;
+
+        if (localStorage.theme === "dark") {
+            htmlEl.classList.add("dark");
+        }
+
+        toggleBtn.addEventListener("click", () => {
+            htmlEl.classList.toggle("dark");
+            localStorage.theme = htmlEl.classList.contains("dark") ? "dark" : "light";
+        });
+    </script>
 </body>
 </html>

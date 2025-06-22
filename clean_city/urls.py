@@ -1,6 +1,5 @@
 from django.contrib import admin
 from django.urls import path, include
-from django.shortcuts import render
 from rest_framework_simplejwt.views import (
     TokenObtainPairView,
     TokenRefreshView
@@ -9,7 +8,7 @@ from rest_framework_simplejwt.views import (
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', lambda request: render(request, 'main/home.html')),
+    path('', include('main.urls')),
     path('api/exchange/', include('exchange.urls')),
     path('api/greenpoints/', include('greenpoints.urls')),
     path(

@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1 class="text-2xl font-bold text-green-700 mb-6 text-center">Добавить зелёную точку</h1>
+<div class="max-w-xl mx-auto bg-green shadow-md rounded-xl p-6">
+    <form method="post">
+    {% csrf_token %}
+
+    <div class="mb-4">
+        <label class="block text-sm font-bold mb-1" for="{{ form.name.id_for_label }}">
+        {{ form.name.label }}
+        </label>
+        {{ form.name }}
+        {% if form.name.errors %}
+        <p class="text-red-500 text-sm">{{ form.name.errors }}</p>
+        {% endif %}
+    </div>
+
+    <div class="mb-4">
+        <label class="block text-sm font-bold mb-1" for="{{ form.description.id_for_label }}">
+        {{ form.description.label }}
+        </label>
+        {{ form.description }}
+        {% if form.description.errors %}
+        <p class="text-red-500 text-sm">{{ form.description.errors }}</p>
+        {% endif %}
+    </div>
+
+    <div class="mb-4">
+        <label class="block text-sm font-bold mb-1" for="{{ form.latitude.id_for_label }}">
+        {{ form.latitude.label }}
+        </label>
+        {{ form.latitude }}
+        {% if form.latitude.errors %}
+        <p class="text-red-500 text-sm">{{ form.latitude.errors }}</p>
+        {% endif %}
+    </div>
+
+    <div class="mb-4">
+        <label class="block text-sm font-bold mb-1" for="{{ form.longitude.id_for_label }}">
+        {{ form.longitude.label }}
+        </label>
+        {{ form.longitude }}
+        {% if form.longitude.errors %}
+        <p class="text-red-500 text-sm">{{ form.longitude.errors }}</p>
+        {% endif %}
+    </div>
+
+    <button type="submit" class="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-xl">
+        💾 Сохранить точку
+    </button>
+    </form>
+</div>
+{% endblock content %}

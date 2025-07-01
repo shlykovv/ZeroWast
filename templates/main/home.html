@@ -19,7 +19,7 @@
 <section class="py-12">
     <h2 class="text-2xl font-semibold mb-4">♻️ Зелёные точки рядом</h2>
     <div class="w-full h-64 bg-gray-100 dark:bg-gray-800 rounded shadow-inner flex items-center justify-center text-gray-500 dark:text-gray-400">
-        Здесь будет карта с точками переработки
+        <div id="map" class="w-full h-[270px] rounded-xl shadow-lg my-6"></div>
     </div>
 </section>
 
@@ -58,7 +58,7 @@
         </div>
     </div>
 </section>
-
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script>
     const map = L.map('map').setView([55.751244, 37.618423], 12); // Москва по умолчанию
 

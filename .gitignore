@@ -3,6 +3,10 @@ __pycache__/
 *.py[codz]
 *$py.class
 
+hotkey*
+
+fixtures/
+
 # C extensions
 *.so
 hotkey*

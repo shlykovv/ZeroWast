@@ -1,59 +1,40 @@
 {% extends "base.html" %}
-{% load static %}
-
 {% block content %}
 
-<!-- О проекте -->
-<section class="py-20 bg-white">
-  <div class="container mx-auto px-4 text-center">
-    <h1 class="text-4xl font-extrabold text-green-800 mb-4">О проекте "Город без мусора"</h1>
-    <p class="text-lg text-green-700 max-w-3xl mx-auto">
-      Мы создаём экосистему, в которой каждый человек может внести свой вклад в чистоту окружающей среды.
-      Наши пользователи сортируют, утилизируют и получают баллы за свои действия. Вместе мы делаем город чище!
-    </p>
+<section class="bg-white py-20">
+  <div class="container mx-auto px-6 max-w-5xl">
+    <h1 class="text-4xl font-extrabold text-green-800 mb-8 text-center">О проекте</h1>
+
+    <div class="space-y-8 text-lg text-gray-800 leading-relaxed">
+      <p>
+        <strong>«Город без мусора»</strong> — это цифровая экосистема, которая объединяет жителей, муниципалитеты и сервисы по утилизации отходов. Наша цель — создать чистое, ответственное и зелёное будущее.
+      </p>
+
+      <p>
+        Система позволяет:
+        <ul class="list-disc list-inside mt-2">
+          <li>отслеживать и сортировать отходы;</li>
+          <li>записывать действия и получать экобаллы;</li>
+          <li>участвовать в экологических инициативах;</li>
+          <li>использовать персональный кабинет для учёта и истории.</li>
+        </ul>
+      </p>
+
+      <p>
+        Платформа создана для поддержки экологических привычек, взаимодействия с компаниями и органами власти, а также поощрения пользователей за участие в экодеятельности.
+      </p>
+    </div>
   </div>
 </section>
 
-<!-- Интерактивная карта -->
-<section class="py-20 bg-green-50">
-  <div class="container mx-auto px-4 text-center">
-    <h2 class="text-3xl font-bold text-green-800 mb-6">Карта пунктов сбора</h2>
-    <div id="map" class="w-full h-[500px] rounded-lg shadow-lg"></div>
+<section class="bg-green-50 py-16">
+  <div class="container mx-auto px-6 text-center">
+    <h2 class="text-2xl font-bold text-green-800 mb-4">Присоединяйтесь к движению</h2>
+    <p class="text-gray-700 mb-6">Каждое ваше действие — вклад в устойчивое будущее</p>
+    <a href="{% url 'accounts:register' %}" class="inline-block bg-green-600 text-white px-6 py-3 rounded-lg hover:bg-green-700 transition">
+      Зарегистрироваться
+    </a>
   </div>
 </section>
 
-{% endblock %}
-
-{% block extra_scripts %}
-<!-- Mapbox -->
-<link href="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.css" rel="stylesheet" />
-<script src="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.js"></script>
-<script>
-  mapboxgl.accessToken = 'pk.YOUR_MAPBOX_PUBLIC_TOKEN';  // ← ВСТАВЬ СЮДА СВОЙ ТОКЕН
-
-  const map = new mapboxgl.Map({
-    container: 'map',
-    style: 'mapbox://styles/mapbox/streets-v12', // можно заменить на dark-v11
-    center: [37.618423, 55.751244], // Москва
-    zoom: 10
-  });
-
-  const points = [
-    {
-      coords: [37.605560, 55.752220],
-      name: "Пункт приёма на Арбате"
-    },
-    {
-      coords: [37.653000, 55.740000],
-      name: "Пункт на Таганке"
-    }
-  ];
-
-  points.forEach(point => {
-    new mapboxgl.Marker({ color: "#10B981" })
-      .setLngLat(point.coords)
-      .setPopup(new mapboxgl.Popup().setText(point.name))
-      .addTo(map);
-  });
-</script>
 {% endblock %}

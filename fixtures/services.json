@@ -1,0 +1,56 @@
+[
+  {
+    "model": "service.category",
+    "pk": 1,
+    "fields": {
+        "name": "Вывоз мусора"
+    }
+  },
+  {
+    "model": "service.category",
+    "pk": 2,
+    "fields": {
+      "name": "Сортировка отходов"
+    }
+  },
+  {
+    "model": "service.category",
+    "pk": 3,
+    "fields": {
+      "name": "Переработка"
+    }
+  },
+  {
+    "model": "service.service",
+    "pk": 1,
+    "fields": {
+      "category": 1,
+      "title": "Вывоз мусора",
+      "description": "Быстрый и экологичный вывоз мусора от вашего дома.",
+      "icon": "fas fa-trash-alt",
+      "created_at": "2025-07-06T12:10:00Z"
+    }
+  },
+  {
+    "model": "service.service",
+    "pk": 2,
+    "fields": {
+      "category": 2,
+      "title": "Сортировка отходов",
+      "description": "Услуги по сортировке и переработке мусора.",
+      "icon": "fas fa-recycle",
+      "created_at": "2025-07-06T12:10:00Z"
+    }
+  },
+  {
+    "model": "service.service",
+    "pk": 3,
+    "fields": {
+      "category": 3,
+      "title": "Пункты сбора",
+      "description": "Информация о ближайших пунктах приема отходов.",
+      "icon": "fas fa-map-marker-alt",
+      "created_at": "2025-07-06T12:10:00Z"
+    }
+  }
+]

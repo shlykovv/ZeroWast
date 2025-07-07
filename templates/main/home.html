@@ -1,51 +1,30 @@
 {% extends "base.html" %}
-{% load static %}
-
 {% block content %}
 
-<!-- Видеофон с затемнением -->
-<section class="relative h-screen overflow-hidden">
-  <video autoplay muted loop class="absolute inset-0 w-full h-full object-cover">
-    <source src="{% static 'video/bg.mp4' %}" type="video/mp4">
-  </video>
-  <div class="absolute inset-0 bg-black bg-opacity-60"></div>
-
-  <div class="relative z-10 flex flex-col items-center justify-center h-full text-center px-4 text-white">
-    <h1 data-aos="zoom-in" class="text-5xl md:text-6xl font-extrabold mb-4">Город без мусора</h1>
-    <p data-aos="fade-up" class="text-xl md:text-2xl mb-8">Экосистема, где каждый вклад имеет значение</p>
-    <a href="#about" data-aos="fade-up" data-aos-delay="200"
-       class="bg-gradient-to-r from-green-400 to-green-600 px-8 py-3 rounded-full shadow-lg hover:scale-105 transition transform duration-300 text-white font-semibold">
-      Узнать больше
-    </a>
+<section class="bg-gradient-to-br from-green-100 to-green-200 py-20">
+  <div class="container mx-auto px-6 text-center">
+    <h1 class="text-4xl md:text-5xl font-extrabold text-green-800">Экосистема «Город без мусора»</h1>
+    <p class="mt-4 text-lg md:text-xl text-green-700">Сортировка, участие, поощрение — всё в одном месте</p>
+    <a href="{% url 'about' %}" class="mt-8 inline-block bg-green-600 text-white px-6 py-3 rounded hover:bg-green-700 transition">Узнать больше</a>
   </div>
 </section>
 
-<!-- О проекте -->
-<section id="about" class="py-20 bg-white">
-  <div class="container mx-auto px-4">
-    <h2 data-aos="fade-up" class="text-4xl font-bold text-center mb-12 text-green-700">О проекте</h2>
-    <div class="grid md:grid-cols-3 gap-8">
-      <div data-aos="fade-up" class="bg-green-100 p-6 rounded-xl shadow-lg hover:shadow-xl transition">
-        <h3 class="text-xl font-semibold mb-2">Категории услуг</h3>
-        <p>Сортировка, переработка, вывоз — всё в одном месте.</p>
+<section class="py-20 bg-white">
+  <div class="container mx-auto px-6">
+    <div class="grid md:grid-cols-3 gap-6">
+      <div class="bg-green-50 p-6 rounded-lg shadow">
+        <h3 class="text-xl font-semibold mb-2 text-green-800">Категории</h3>
+        <p>Выберите подходящую услугу: вывоз, сортировка, переработка и др.</p>
       </div>
-      <div data-aos="fade-up" data-aos-delay="100" class="bg-green-100 p-6 rounded-xl shadow-lg hover:shadow-xl transition">
-        <h3 class="text-xl font-semibold mb-2">Пользователи</h3>
-        <p>Личный кабинет, баллы и история взаимодействий.</p>
+      <div class="bg-green-50 p-6 rounded-lg shadow">
+        <h3 class="text-xl font-semibold mb-2 text-green-800">Баллы и история</h3>
+        <p>Накопленные баллы и взаимодействие с системой в личном кабинете.</p>
       </div>
-      <div data-aos="fade-up" data-aos-delay="200" class="bg-green-100 p-6 rounded-xl shadow-lg hover:shadow-xl transition">
-        <h3 class="text-xl font-semibold mb-2">Геймификация</h3>
-        <p>Накопление баллов за экодействия и участие в акциях.</p>
+      <div class="bg-green-50 p-6 rounded-lg shadow">
+        <h3 class="text-xl font-semibold mb-2 text-green-800">Геймификация</h3>
+        <p>Получайте награды за участие в акциях и экособытиях.</p>
       </div>
     </div>
-  </div>
-</section>
-
-<!-- Контакты -->
-<section id="contact" class="py-20 bg-gradient-to-b from-green-50 to-green-100">
-  <div class="container mx-auto px-4 text-center">
-    <h2 data-aos="fade-up" class="text-3xl font-bold mb-6 text-green-800">Контакты</h2>
-    <p data-aos="fade-up" data-aos-delay="100" class="text-green-700">support@zerowaste.ru</p>
   </div>
 </section>
 

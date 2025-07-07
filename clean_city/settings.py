@@ -38,7 +38,8 @@ INSTALLED_APPS = [
     "exchange.apps.ExchangeConfig",
     "map.apps.MapConfig",
     "greenpoints.apps.GreenpointsConfig",
-    "main.apps.MainConfig"
+    "main.apps.MainConfig",
+    'service.apps.ServiceConfig'
 ]
 
 MIDDLEWARE = [

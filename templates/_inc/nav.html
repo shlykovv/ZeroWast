@@ -1,54 +1,14 @@
-<nav x-data="{ open: false }" class="fixed top-0 left-0 right-0 bg-white shadow z-50 font-[Montserrat]">
-  <div class="container mx-auto px-4 py-3 flex justify-between items-center">
-
-    <!-- Логотип -->
-    <a href="{% url 'home' %}" class="text-green-700 font-bold text-2xl tracking-wide flex items-center space-x-1">
-      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 2a10 10 0 100 20 10 10 0 000-20z" />
-      </svg>
-      <span>ZeroWaste</span>
+<header class="fixed top-0 left-0 right-0 bg-white shadow z-50">
+  <div class="container mx-auto px-6 py-4 flex items-center justify-between">
+    <a href="{% url 'home' %}" class="text-2xl font-extrabold text-green-700 tracking-tight">
+      Город без мусора
     </a>
-
-    <!-- Кнопка бургер -->
-    <button @click="open = !open" class="md:hidden text-green-700 focus:outline-none">
-      <svg x-show="!open" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
-      </svg>
-      <svg x-show="open" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
-      </svg>
-    </button>
-
-    <!-- Меню -->
-    <div class="hidden md:flex space-x-6 items-center text-base text-gray-800 font-semibold">
-      <a href="{% url 'about' %}" class="hover:text-green-600 transition">О проекте</a>
-      <a href="#contact" class="hover:text-green-600 transition">Контакты</a>
-
-      {% if user.is_authenticated %}
-        <a href="{% url 'accounts:profile' %}" class="flex items-center space-x-1 hover:text-green-600">
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.121 17.804A7.968 7.968 0 0112 15a7.968 7.968 0 016.879 2.804M12 12a4 4 0 100-8 4 4 0 000 8z"/>
-          </svg>
-          <span>Профиль</span>
-        </a>
-        <a href="{% url 'accounts:logout' %}" class="hover:text-red-600">Выйти</a>
-      {% else %}
-        <a href="{% url 'accounts:login' %}" class="hover:text-green-600">Войти</a>
-        <a href="{% url 'accounts:register' %}" class="hover:text-green-600">Регистрация</a>
-      {% endif %}
-    </div>
+    <nav class="space-x-6 text-sm font-medium">
+      <a href="{% url "about" %}" class="text-gray-700 hover:text-green-600">О проекте</a>
+      <a href="" class="text-gray-700 hover:text-green-600">Услуги</a>
+      <a href="" class="text-gray-700 hover:text-green-600">Карта</a>
+      <a href="{% url 'accounts:login' %}" class="text-gray-700 hover:text-green-600">Войти</a>
+      <a href="{% url 'accounts:register' %}" class="bg-green-600 text-white px-3 py-1 rounded hover:bg-green-700">Регистрация</a>
+    </nav>
   </div>
-
-  <!-- Мобильное меню -->
-  <div x-show="open" class="md:hidden bg-white border-t border-gray-200 px-4 pb-4 text-base font-semibold">
-    <a href="#about" class="block py-2 text-gray-700 hover:text-green-600">О проекте</a>
-    <a href="#contact" class="block py-2 text-gray-700 hover:text-green-600">Контакты</a>
-    {% if user.is_authenticated %}
-      <a href="{% url 'accounts:profile' %}" class="block py-2 text-gray-700 hover:text-green-600">Профиль</a>
-      <a href="{% url 'accounts:logout' %}" class="block py-2 text-red-600">Выйти</a>
-    {% else %}
-      <a href="{% url 'accounts:login' %}" class="block py-2 text-gray-700 hover:text-green-600">Войти</a>
-      <a href="{% url 'accounts:register' %}" class="block py-2 text-gray-700 hover:text-green-600">Регистрация</a>
-    {% endif %}
-  </div>
-</nav>
+</header>

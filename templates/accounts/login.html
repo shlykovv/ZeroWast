@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% load form_tags %}
+
+
+{% block content %}
+
+<div class="flex justify-center items-center h-screen bg-gray-50">
+  <div class="w-full max-w-md bg-white p-8 rounded shadow-md">
+    <h2 class="text-2xl font-semibold text-center text-green-600 mb-6">Вход в аккаунт</h2>
+    <form method="post" class="space-y-4">
+      {% csrf_token %}
+      {{ form.non_field_errors }}
+      <div>
+        <label for="username" class="block text-gray-700">Имя пользователя</label>
+        {{ form.username|add_class:"w-full px-3 py-2 border rounded focus:outline-none focus:ring focus:ring-green-200" }}
+      </div>
+      <div>
+        <label for="password" class="block text-gray-700">Пароль</label>
+        {{ form.password|add_class:"w-full px-3 py-2 border rounded focus:outline-none focus:ring focus:ring-green-200" }}
+      </div>
+      <button type="submit"
+        class="w-full bg-green-600 hover:bg-green-700 text-white font-semibold py-2 rounded transition">
+        Войти
+      </button>
+    </form>
+    <p class="mt-4 text-center text-sm text-gray-600">
+      Нет аккаунта?
+      <a href="{% url 'accounts:register' %}" class="text-green-600 hover:underline">Зарегистрируйтесь</a>
+    </p>
+  </div>
+</div>
+
+
+{% endblock content %}

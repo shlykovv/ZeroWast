@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% load form_tags %}
+
+
+<!-- register.html -->
+{% block content %}
+
+<div class="flex justify-center items-center h-screen bg-gray-50">
+  <div class="w-full max-w-md bg-white p-8 rounded shadow-md">
+    <h2 class="text-2xl font-semibold text-center text-green-600 mb-6">Регистрация</h2>
+    <form method="post" class="space-y-4">
+      {% csrf_token %}
+      {{ form.non_field_errors }}
+      <div>
+        <label for="username" class="block text-gray-700">Имя пользователя</label>
+        {{ form.username|add_class:"w-full px-3 py-2 border rounded focus:outline-none focus:ring focus:ring-green-200" }}
+      </div>
+      <div>
+        <label for="email" class="block text-gray-700">Email</label>
+        {{ form.email|add_class:"w-full px-3 py-2 border rounded focus:outline-none focus:ring focus:ring-green-200" }}
+      </div>
+      <div>
+        <label for="password1" class="block text-gray-700">Пароль</label>
+        {{ form.password1|add_class:"w-full px-3 py-2 border rounded focus:outline-none focus:ring focus:ring-green-200" }}
+      </div>
+      <div>
+        <label for="password2" class="block text-gray-700">Подтверждение пароля</label>
+        {{ form.password2|add_class:"w-full px-3 py-2 border rounded focus:outline-none focus:ring focus:ring-green-200" }}
+      </div>
+      <button type="submit"
+        class="w-full bg-green-600 hover:bg-green-700 text-white font-semibold py-2 rounded transition">
+        Зарегистрироваться
+      </button>
+    </form>
+    <p class="mt-4 text-center text-sm text-gray-600">
+      Уже есть аккаунт?
+      <a href="{% url 'accounts:login' %}" class="text-green-600 hover:underline">Войти</a>
+    </p>
+  </div>
+</div>
+
+{% endblock content %}

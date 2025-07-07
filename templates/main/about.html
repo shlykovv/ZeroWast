@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+<!-- О проекте -->
+<section class="py-20 bg-white">
+  <div class="container mx-auto px-4 text-center">
+    <h1 class="text-4xl font-extrabold text-green-800 mb-4">О проекте "Город без мусора"</h1>
+    <p class="text-lg text-green-700 max-w-3xl mx-auto">
+      Мы создаём экосистему, в которой каждый человек может внести свой вклад в чистоту окружающей среды.
+      Наши пользователи сортируют, утилизируют и получают баллы за свои действия. Вместе мы делаем город чище!
+    </p>
+  </div>
+</section>
+
+<!-- Интерактивная карта -->
+<section class="py-20 bg-green-50">
+  <div class="container mx-auto px-4 text-center">
+    <h2 class="text-3xl font-bold text-green-800 mb-6">Карта пунктов сбора</h2>
+    <div id="map" class="w-full h-[500px] rounded-lg shadow-lg"></div>
+  </div>
+</section>
+
+{% endblock %}
+
+{% block extra_scripts %}
+<!-- Mapbox -->
+<link href="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.css" rel="stylesheet" />
+<script src="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.js"></script>
+<script>
+  mapboxgl.accessToken = 'pk.YOUR_MAPBOX_PUBLIC_TOKEN';  // ← ВСТАВЬ СЮДА СВОЙ ТОКЕН
+
+  const map = new mapboxgl.Map({
+    container: 'map',
+    style: 'mapbox://styles/mapbox/streets-v12', // можно заменить на dark-v11
+    center: [37.618423, 55.751244], // Москва
+    zoom: 10
+  });
+
+  const points = [
+    {
+      coords: [37.605560, 55.752220],
+      name: "Пункт приёма на Арбате"
+    },
+    {
+      coords: [37.653000, 55.740000],
+      name: "Пункт на Таганке"
+    }
+  ];
+
+  points.forEach(point => {
+    new mapboxgl.Marker({ color: "#10B981" })
+      .setLngLat(point.coords)
+      .setPopup(new mapboxgl.Popup().setText(point.name))
+      .addTo(map);
+  });
+</script>
+{% endblock %}

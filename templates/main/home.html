@@ -1,85 +1,52 @@
-{% extends 'base.html' %}
-
-{% block title %}Главная — Город без мусора{% endblock %}
+{% extends "base.html" %}
+{% load static %}
 
 {% block content %}
 
-<!-- Hero -->
-<section class="text-center py-12 px-4 bg-gradient-to-b from-green-100 to-white dark:from-green-900 dark:to-gray-900">
-    <h1 class="text-4xl font-extrabold text-green-700 dark:text-green-300 mb-4">Город без мусора</h1>
-    <p class="text-lg text-gray-700 dark:text-gray-300 mb-6">
-        Обменивайся, перерабатывай, вдохновляй других. Делай город чище.
-    </p>
-    <a href="#" class="bg-green-600 hover:bg-green-700 text-white py-3 px-6 rounded-xl text-lg shadow">
-        Начать прямо сейчас
+<!-- Видеофон с затемнением -->
+<section class="relative h-screen overflow-hidden">
+  <video autoplay muted loop class="absolute inset-0 w-full h-full object-cover">
+    <source src="{% static 'video/bg.mp4' %}" type="video/mp4">
+  </video>
+  <div class="absolute inset-0 bg-black bg-opacity-60"></div>
+
+  <div class="relative z-10 flex flex-col items-center justify-center h-full text-center px-4 text-white">
+    <h1 data-aos="zoom-in" class="text-5xl md:text-6xl font-extrabold mb-4">Город без мусора</h1>
+    <p data-aos="fade-up" class="text-xl md:text-2xl mb-8">Экосистема, где каждый вклад имеет значение</p>
+    <a href="#about" data-aos="fade-up" data-aos-delay="200"
+       class="bg-gradient-to-r from-green-400 to-green-600 px-8 py-3 rounded-full shadow-lg hover:scale-105 transition transform duration-300 text-white font-semibold">
+      Узнать больше
     </a>
-</section>
-
-<!-- Зеленые точки -->
-<section class="py-12">
-    <h2 class="text-2xl font-semibold mb-6">♻️ Зелёные точки рядом</h2>
-    <div class="w-full h-64 bg-gray-100 dark:bg-gray-800 rounded shadow-inner flex items-center justify-center text-gray-500 dark:text-gray-400">
-        <div id="map" class="w-full h-[270px] rounded-xl shadow-lg my-6"></div>
-    </div>
-    {% comment %} {% if user.is_authenticated %} {% endcomment %}
-    <div class="flex justify-end mb-4 mt-4">
-        <a href="{% url 'greenpoint-create' %}"
-        class="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-xl shadow">
-        ➕ Добавить точку
-        </a>
-    </div>
-    {% comment %} {% endif %} {% endcomment %}
-</section>
-
-<!-- Обмен -->
-<section class="px-6 py-10 bg-gray-50 dark:bg-gray-800">
-  <h2 class="text-2xl font-semibold mb-6">🔁 Обмен вещами</h2>
-  <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-      {% for item in items %}
-          <div class="bg-white dark:bg-gray-700 p-4 rounded-xl shadow hover:shadow-lg transition">
-              {% if item.image %}
-                  <img src="{{ item.image.url }}" alt="{{ item.title }}" class="w-full h-40 object-cover rounded mb-3">
-              {% else %}
-                  <div class="w-full h-40 bg-gray-200 dark:bg-gray-600 rounded mb-3 flex items-center justify-center text-gray-400">
-                    Нет изображения
-                  </div>
-              {% endif %}
-              <h3 class="font-bold text-lg text-green-700 dark:text-green-300">{{ item.title }}</h3>
-              <p class="text-sm text-gray-600 dark:text-gray-300">{{ item.category.name }}</p>
-              <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">{{ item.location }}</p>
-          </div>
-      {% endfor %}
   </div>
 </section>
 
-<!-- Челленджи -->
-<section class="py-10">
-    <h2 class="text-2xl font-semibold mb-4">🏆 Экочелленджи</h2>
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-        <div class="bg-green-100 dark:bg-green-900 p-4 rounded-xl">
-            <h3 class="text-lg font-bold">Неделя без пластика</h3>
-            <p class="text-sm text-gray-700 dark:text-gray-300">+20 баллов</p>
-        </div>
-        <div class="bg-green-100 dark:bg-green-900 p-4 rounded-xl">
-            <h3 class="text-lg font-bold">10 вещей на обмен</h3>
-            <p class="text-sm text-gray-700 dark:text-gray-300">+15 баллов</p>
-        </div>
+<!-- О проекте -->
+<section id="about" class="py-20 bg-white">
+  <div class="container mx-auto px-4">
+    <h2 data-aos="fade-up" class="text-4xl font-bold text-center mb-12 text-green-700">О проекте</h2>
+    <div class="grid md:grid-cols-3 gap-8">
+      <div data-aos="fade-up" class="bg-green-100 p-6 rounded-xl shadow-lg hover:shadow-xl transition">
+        <h3 class="text-xl font-semibold mb-2">Категории услуг</h3>
+        <p>Сортировка, переработка, вывоз — всё в одном месте.</p>
+      </div>
+      <div data-aos="fade-up" data-aos-delay="100" class="bg-green-100 p-6 rounded-xl shadow-lg hover:shadow-xl transition">
+        <h3 class="text-xl font-semibold mb-2">Пользователи</h3>
+        <p>Личный кабинет, баллы и история взаимодействий.</p>
+      </div>
+      <div data-aos="fade-up" data-aos-delay="200" class="bg-green-100 p-6 rounded-xl shadow-lg hover:shadow-xl transition">
+        <h3 class="text-xl font-semibold mb-2">Геймификация</h3>
+        <p>Накопление баллов за экодействия и участие в акциях.</p>
+      </div>
     </div>
+  </div>
 </section>
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-<script>
-    const map = L.map('map').setView([55.751244, 37.618423], 12); // Москва по умолчанию
 
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        attribution: '&copy; OpenStreetMap contributors'
-    }).addTo(map);
+<!-- Контакты -->
+<section id="contact" class="py-20 bg-gradient-to-b from-green-50 to-green-100">
+  <div class="container mx-auto px-4 text-center">
+    <h2 data-aos="fade-up" class="text-3xl font-bold mb-6 text-green-800">Контакты</h2>
+    <p data-aos="fade-up" data-aos-delay="100" class="text-green-700">support@zerowaste.ru</p>
+  </div>
+</section>
 
-    const greenpoints = {{ greenpoints_json|safe }};  // Список точек в формате [{name, lat, lng, description}, ...]
-
-    greenpoints.forEach(point => {
-        L.marker([point.lat, point.lng])
-            .addTo(map)
-            .bindPopup(`<b>${point.name}</b><br>${point.description}`);
-    });
-</script>
 {% endblock %}
